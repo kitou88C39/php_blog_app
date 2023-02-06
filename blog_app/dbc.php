@@ -24,16 +24,22 @@ function dbConnect()
   };
   return $dbh;
 }
-//echo "接続成功";
+//2.データを取得する
+//引数：無
+//返り値：取得したデータ
+function getAllBlog(){
+  $dbh = dbConnect();
 //①SQLの準備
-$sql = 'SELECT * FROM blog';
-//②SQLの実行
-$stmt = $dbh->query($sql);
-//③SQLの結果を受け取る
-$result = $stmt->fetchall(PDO::FETCH_ASSOC);
-// var_dump($result);
-$dbh = null;
-// var_dump($dbh);
+  $sql = 'SELECT * FROM blog';
+  //②SQLの実行
+  $stmt = $dbh->query($sql);
+  //③SQLの結果を受け取る
+  $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+  return $result;
+  $dbh = null;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
