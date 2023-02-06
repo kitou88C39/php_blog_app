@@ -1,26 +1,38 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=blog_app;charset=utf8';
-$user = 'blog_user';
-$pass = 'aaaaa';
+//関数一つに一つの機能のみを持たせる
+//1.データベースを接続
+//2.データを取得する
+//3.カテゴリー名を表示
 
-try {
-  $dbh = new PDO($dsn, $user, $pass, [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-  ]);
-  //echo "接続成功";
-  //①SQLの準備
-  $sql = 'SELECT * FROM blog';
-  //②SQLの実行
-  $stmt = $dbh->query($sql);
-  //③SQLの結果を受け取る
-  $result = $stmt->fetchall(PDO::FETCH_ASSOC);
-  // var_dump($result);
-  $dbh = null;
-} catch(PDOException $e) {
-  echo "接続失敗".$e->getMessage();
-  exit();
-};
+//1.データベースを接続
+//引数：無
+//返り値：接続結果を返す
 
+function dbConnect()
+{
+  $dsn = 'mysql:host=localhost;dbname=blog_app;charset=utf8';
+  $user = 'blog_user';
+  $pass = 'aaaaa';
+
+  try {
+    $dbh = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+  } catch (PDOException $e) {
+    echo "接続失敗" . $e->getMessage();
+    exit();
+  };
+  return $dbh;
+}
+//echo "接続成功";
+//①SQLの準備
+$sql = 'SELECT * FROM blog';
+//②SQLの実行
+$stmt = $dbh->query($sql);
+//③SQLの結果を受け取る
+$result = $stmt->fetchall(PDO::FETCH_ASSOC);
+// var_dump($result);
+$dbh = null;
 // var_dump($dbh);
 ?>
 <!DOCTYPE html>
@@ -30,6 +42,7 @@ try {
   <title>BLOG一覧</title>
 </head>
 <body>
+<h2>BLOG一覧</h2>
   <table>
     <tr>
       <th>No</th>
