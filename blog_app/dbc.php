@@ -38,8 +38,21 @@ function getAllBlog(){
   return $result;
   $dbh = null;
 }
+//取得したデータを表示
+$blogData = getAllBlog();
 
-
+//3.カテゴリー名を表示
+//引数：数字
+//返り値：カテゴリーの文字列
+function setCategoryName($category){
+  if ($category === '1'){
+    return 'ブログ';
+  } elseif ($category === '2') {
+    return '日常';
+  } else {
+    return 'その他';
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,11 +68,11 @@ function getAllBlog(){
       <th>Title</th>
       <th>Category</th>
     </tr>
-    <?php foreach($result as $column): ?>
+    <?php foreach($blogData as $column): ?>
     <tr>
       <th><?php echo $column['id'] ?></th>
       <th><?php echo $column['title'] ?></th>
-      <th><?php echo $column['category'] ?></th>
+      <th><?php echo setCategoryName($column['category']) ?></th>
     </tr>
     <?php endforeach; ?>
 </table>
