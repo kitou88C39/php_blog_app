@@ -38,8 +38,7 @@ function getAllBlog(){
   return $result;
   $dbh = null;
 }
-//取得したデータを表示
-$blogData = getAllBlog();
+
 
 //3.カテゴリー名を表示
 //引数：数字

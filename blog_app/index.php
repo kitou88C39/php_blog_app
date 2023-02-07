@@ -1,3 +1,8 @@
+<?php
+require_once('dbc.php');
+//取得したデータを表示
+$blogData = getAllBlog();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
