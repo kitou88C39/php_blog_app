@@ -1,4 +1,5 @@
 <?php
+namespace Blog\Dbc;
 //関数一つに一つの機能のみを持たせる
 //1.データベースを接続
 //2.データを取得する
@@ -15,10 +16,10 @@ function dbConnect()
   $pass = 'aaaaa';
 
   try {
-    $dbh = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    $dbh = new \PDO($dsn, $user, $pass, [
+      \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
     ]);
-  } catch (PDOException $e) {
+  } catch (\PDOException $e) {
     echo "接続失敗" . $e->getMessage();
     exit();
   };
@@ -34,7 +35,7 @@ function getAllBlog(){
   //②SQLの実行
   $stmt = $dbh->query($sql);
   //③SQLの結果を受け取る
-  $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+  $result = $stmt->fetchall(\PDO::FETCH_ASSOC);
   return $result;
   $dbh = null;
 }
@@ -62,11 +63,11 @@ function getBlog($id){
 $dbh = dbConnect();
 //SQL準備
 $stmt = $dbh->prepare('SELECT * FROM blog where id = :id');
-$stmt->bindValue(':id',(int)$id,PDO::PARAM_INT);
+$stmt->bindValue(':id',(int)$id,\PDO::PARAM_INT);
 //SQL準備
 $stmt->execute();
 //SQL準備
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->fetch(\PDO::FETCH_ASSOC);
 if(empty($result)){
     exit('ブログがありません。');
 }
