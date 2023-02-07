@@ -1,7 +1,8 @@
 <?php
 require_once('dbc.php');
 //取得したデータを表示
-$blogData = getAllBlog();
+use Blog\Dbc;
+$blogData = Dbc\getAllBlog();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@ $blogData = getAllBlog();
     <tr>
       <td><?php echo $column['id'] ?></td>
       <td><?php echo $column['title'] ?></td>
-      <td><?php echo setCategoryName($column['category']) ?></td>
+      <td><?php echo Dbc\setCategoryName($column['category']) ?></td>
       <!-- ①一覧画面からブログのidを送る GETリクエストでidをURLにつけて送る -->
       <td><a href="/detail.php?id=<?php echo $column['id'] ?>">詳細</a></td>
     </tr>

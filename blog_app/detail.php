@@ -4,11 +4,7 @@ require_once('dbc.php');
 //②namespaceを設定しよう
 //③useを使おう
 
-
-
-//②一覧画面からブログのidを送る
-$id = $_GET['id'];
-
+$result = getBlog($_GET['id']);
 
 ?>
 
