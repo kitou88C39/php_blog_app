@@ -1,6 +1,6 @@
 <?php
 //①require_onceを使ってみよう
-require_once(dbc.php);
+require_once('dbc.php');
 //②namespaceを設定しよう
 //③useを使おう
 
