@@ -9,23 +9,7 @@ require_once('dbc.php');
 //②一覧画面からブログのidを送る
 $id = $_GET['id'];
 
-if(empty($id)){
-    exit('idが不正です。');
-}
 
-
-$dbh = dbConnect();
-
-//SQL準備
-$stmt = $dbh->prepare('SELECT * FROM blog where id = :id');
-$stmt->bindValue(':id',(int)$id,PDO::PARAM_INT);
-//SQL準備
-$stmt->execute();
-//SQL準備
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-if(empty($result)){
-    exit('ブログがありません。');
-}
 ?>
 
 <!DOCTYPE html>
