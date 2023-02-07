@@ -70,9 +70,11 @@ function setCategoryName($category){
     </tr>
     <?php foreach($blogData as $column): ?>
     <tr>
-      <th><?php echo $column['id'] ?></th>
-      <th><?php echo $column['title'] ?></th>
-      <th><?php echo setCategoryName($column['category']) ?></th>
+      <td><?php echo $column['id'] ?></td>
+      <td><?php echo $column['title'] ?></td>
+      <td><?php echo setCategoryName($column['category']) ?></td>
+      <!-- ①一覧画面からブログのidを送る GETリクエストでidをURLにつけて送る -->
+      <td><a href="/detail.php?id=<?php echo $column['id'] ?>">詳細</a></td>
     </tr>
     <?php endforeach; ?>
 </table>
